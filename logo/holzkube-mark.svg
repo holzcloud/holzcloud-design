@@ -1,0 +1,27 @@
+<!-- holzkube — Hirnholz.
+     Der Name in einem Zeichen: der isometrische Würfel ist das Kube,
+     die Jahrringe auf der Schnittfläche sind das Holz. Ein quadratisch
+     abgelängter Balken zeigt genau das.
+
+     In 2:1-Isometrie wird ein Kreis der Deckfläche zur Ellipse mit
+     waagrechter Hauptachse und rx:ry = 2:1 — deshalb sind die Ringe
+     einfache <ellipse> ohne Transform. Mit Transform würde die
+     Strichbreite mitskaliert, und vector-effect="non-scaling-stroke"
+     ist dafür nicht verlässlich genug.
+
+     Zeichnet in currentColor. Für Grössen unter 24px gehört
+     holzkube-mark-small.svg genommen. -->
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hk-top"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hk-top)" stroke="currentColor" stroke-width="1.6" opacity=".75">
+    <ellipse cx="25" cy="18" rx="6"  ry="3"/>
+    <ellipse cx="25" cy="18" rx="12" ry="6"/>
+    <ellipse cx="25" cy="18" rx="19" ry="9.5"/>
+    <ellipse cx="25" cy="18" rx="27" ry="13.5"/>
+  </g>
+</svg>

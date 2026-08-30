@@ -19,7 +19,9 @@ system.
 | `css/base.css` | The ground, the type, the focus ring, the two accessibility settings. |
 | `css/components.css` | Panes, buttons, chips, status, alerts, forms, tables, text roles. |
 | `css/holzcloud.css` | The three above in one `@import`, for convenience. |
+| `css/motif.css` | The cube texture and the drawing vocabulary. |
 | `css/shadcn-bridge.css` | Points shadcn/Tailwind's variable names at the tokens. |
+| `logo/` | The holzkube mark, in the sizes it actually needs. |
 | `tokens.json` | The same values, machine-readable. Generated from `tokens.css`. |
 | `docs/index.html` | The specimen. Every token and every component on one page. |
 | `tools/` | The two scripts CI runs. |
@@ -70,6 +72,62 @@ Two things it changes on purpose, both spelled out in the file:
 - It sets `--font-sans` to Manrope, which means dropping Geist. Two typefaces
   across four surfaces is the most visible way for them to stop looking like
   one product.
+
+### The motif — `css/motif.css`
+
+The isometric cube is in the name holzkube, in the logo, and in the texture
+behind every page. `motif.css` holds both: `.hc-cubes` for the texture, and the
+`.hc-iso` vocabulary for building drawings out of the same geometry.
+
+It is deliberately **not** in `holzcloud.css`. An administration screen does not
+show the motif and should not load it.
+
+It is also not optional wherever `.hc-pane` sits over the gradient. A
+`backdrop-filter` needs edges to refract; over a smooth gradient a frosted pane
+reads as brown paint. Leave the texture out and the glass stops being glass.
+
+`.hc-cubes` goes first in the `<body>`. Everything after it lifts itself above
+the texture with a sibling rule — including one line that hands `.hc-bar` its
+`position: sticky` back, because `hc.motif` layers after `hc.components` and
+would otherwise take it away. That is the same sticky bug the bar's own comment
+warns about, arriving through the back door.
+
+```html
+<body>
+  <div class="hc-cubes" aria-hidden="true"></div>
+  <header class="hc-bar">…</header>
+```
+
+The texture is a **mask** over a colour fill rather than a coloured image. A
+hex inside a `data:` URI would be the one value in the system that could not
+follow `--hc-brass`; as a mask, it does.
+
+### The logo
+
+`logo/holzkube-mark.svg` is the name in one figure: the isometric cube is the
+*Kube*, the growth rings on the cut face are the *Holz*. A square-sawn beam
+shows exactly that, and the cube is the same geometry already behind the page.
+
+| File | For |
+|---|---|
+| `holzkube-mark.svg` | 24px and up. Draws in `currentColor`. |
+| `holzkube-mark-small.svg` | Below that. Two rings instead of four, heavier stroke. |
+| `holzkube-lockup.svg` | Mark and wordmark. |
+| `holzkube-favicon.svg` | Fixed colour — a browser tab gives the file no text colour, and `currentColor` would be black there. |
+
+Two rings and not four below 24px because four converge into a smudge, and what
+survives is a cube with a dirty rim.
+
+In 2:1 isometry a circle on the top face becomes an ellipse with a horizontal
+major axis and `rx:ry = 2:1`, so the rings are plain `<ellipse>` elements with
+no transform. With a transform the stroke width scales too, and
+`vector-effect="non-scaling-stroke"` did not hold up in testing — the rings
+rendered 26× thick and filled the face solid.
+
+`logo/alternatives/` keeps the two that were not chosen, so the decision stays
+readable: three laminated planks is clean but it is a parcel box, and there are
+enough of those; a cube inside a box says cluster but says nothing about wood,
+which loses one of the two syllables in the name.
 
 ### Anything else
 

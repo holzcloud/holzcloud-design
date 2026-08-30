@@ -61,11 +61,11 @@ def main() -> int:
                   f"({text.count('{')} open, {text.count('}')} close)")
             bad += 1
 
-        # Rule 3 applies to the components, not to the tokens that define
-        # the palette, not to the bridge (it hands shadcn a few alpha
-        # values that exist nowhere else), and not to the specimen page's
-        # own layout, which is not part of the system.
-        if rel.as_posix() == "css/components.css":
+        # Rule 3 applies to the files that build the interface, not to
+        # the tokens that define the palette, not to the bridge (it hands
+        # shadcn a few alpha values that exist nowhere else), and not to
+        # the specimen page's own layout, which is not part of the system.
+        if rel.as_posix() in {"css/components.css", "css/motif.css"}:
             for m in COLOUR.finditer(text):
                 line = text[: m.start()].count("\n") + 1
                 print(f"ERROR: {rel}:{line}: literal colour {m.group(1)!r} — "

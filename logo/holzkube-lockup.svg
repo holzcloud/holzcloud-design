@@ -1,0 +1,23 @@
+<!-- Marke und Wortmarke. Der Abstand zwischen beiden ist die halbe
+     Würfelbreite; wer das Lockup nachbaut, hält sich daran.
+     "holz" mager, "kube" halbfett — dieselbe Teilung wie im
+     holzcloud-Schriftzug, damit die beiden als Familie lesen.
+     Die Schrift liegt als Pfad vor, damit die Datei keine
+     Schriftinstallation braucht. -->
+<svg viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hkl-top"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hkl-top)" stroke="currentColor" stroke-width="1.6" opacity=".75">
+    <ellipse cx="25" cy="18" rx="6"  ry="3"/>
+    <ellipse cx="25" cy="18" rx="12" ry="6"/>
+    <ellipse cx="25" cy="18" rx="19" ry="9.5"/>
+    <ellipse cx="25" cy="18" rx="27" ry="13.5"/>
+  </g>
+  <text x="84" y="41" fill="currentColor" font-family="Manrope, ui-sans-serif, system-ui, sans-serif" font-size="30" letter-spacing="-.5">
+    <tspan font-weight="200">holz</tspan><tspan font-weight="500">kube</tspan>
+  </text>
+</svg>

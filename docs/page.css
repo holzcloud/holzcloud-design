@@ -80,3 +80,17 @@
   .hc-bar__inner { flex-wrap: wrap; padding-block: var(--hc-space-3); }
   .doc-type-row { grid-template-columns: minmax(0, 1fr); gap: var(--hc-space-2); }
 }
+
+.doc-logo-row { display: flex; align-items: flex-end; flex-wrap: wrap; gap: var(--hc-space-6); color: var(--hc-brass); }
+.doc-logo-row > div { text-align: center; }
+.doc-logo-row svg { display: block; }
+.doc-logo-row small { color: var(--hc-ink-3); }
+.doc-on-ink {
+  background: var(--hc-ink); color: var(--hc-on-brass);
+  padding: var(--hc-space-3) var(--hc-space-4); border-radius: var(--hc-r-sm);
+}
+.doc-on-ink small { color: rgb(21 14 8 / .55); }
+.doc-logo-lockup { color: var(--hc-ink); }
+.doc-logo-lockup svg { display: block; max-width: 100%; height: auto; }
+.doc-figure { margin: 0; }
+.doc-figure svg { width: 100%; height: auto; display: block; }

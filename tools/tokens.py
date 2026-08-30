@@ -36,6 +36,7 @@ GROUPS = [
     ("elevation",("shadow",)),
     ("motion",   ("dur", "ease")),
     ("layout",   ("wide", "measure", "gutter")),
+    ("motif",    ("cubes", "iso", "flow", "rail")),
     ("focus",    ("focus",)),
 ]
 

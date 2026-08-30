@@ -1,0 +1,114 @@
+/* ══════════════════════════════════════════════════════════════
+   holzcloud motif — der isometrische Würfel
+
+   Er steckt im Namen holzkube, im Logo und in der Textur hinter jeder
+   Seite. Zwei Dinge liegen hier: die Textur selbst, und das Vokabular,
+   mit dem die Zeichnungen gebaut werden.
+
+   Diese Datei ist bewusst NICHT in holzcloud.css. Eine Verwaltung wie
+   die von holzcloud-cms braucht kein Würfelmotiv, und sie soll dafür
+   auch nichts laden.
+
+   Sie ist aber auch nicht optional, wenn .hc-pane über dem Verlauf
+   sitzt: ein backdrop-filter braucht Kanten zum Brechen. Über einem
+   glatten Verlauf liest sich eine gefrostete Fläche als brauner Lack,
+   nicht als Glas. Wer die Textur weglässt, nimmt dem Glas das Glas.
+
+   Braucht tokens.css.
+   ══════════════════════════════════════════════════════════════ */
+@layer hc.motif {
+
+  /* ── Textur ───────────────────────────────────────────────────
+     Als Maske über einer Farbfläche, nicht als farbiges Bild: so folgt
+     sie --hc-brass wie alles andere. Ein Hex in einer data-URI wäre
+     der eine Wert im System, der das nicht kann. */
+  .hc-cubes {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-color: var(--hc-brass);
+    opacity: var(--hc-cubes-opacity);
+    -webkit-mask-image: var(--hc-cubes-mask);
+            mask-image: var(--hc-cubes-mask);
+    -webkit-mask-size: var(--hc-cubes-size);
+            mask-size: var(--hc-cubes-size);
+    -webkit-mask-repeat: repeat;
+            mask-repeat: repeat;
+  }
+  /* Die Textur liegt auf z-index 0, also muss der Inhalt darüber. Als
+     Geschwisterregel statt als Klasse auf jedem Element: .hc-cubes
+     gehört als erstes Kind in den <body>, und alles danach hebt sich
+     von selbst. Vergisst man das, ist die Seite unsichtbar hinter
+     einem Muster — ein Fehler, den man einmal macht. */
+  .hc-cubes ~ * { position: relative; z-index: 1; }
+  /* Die Leiste positioniert sich selbst, und hc.motif liegt nach
+     hc.components — ohne diese Zeile nimmt die Regel darüber ihr das
+     sticky, und sie scrollt weg. Genau der Fehler, vor dem .hc-bar
+     selbst warnt; er kommt hier durch die Hintertür wieder herein. */
+  .hc-cubes ~ .hc-bar { position: sticky; z-index: 30; }
+
+  /* Wer keine Masken kann, bekommt keine Textur — und nicht eine
+     bernsteinfarbene Fläche über der ganzen Seite. */
+  @supports not ((mask-image: url("#x")) or (-webkit-mask-image: url("#x"))) {
+    .hc-cubes { display: none; }
+  }
+  /* Wer weniger Transparenz wollte, hat auch den Verlauf verloren.
+     Dann gibt es nichts mehr zu brechen, und die Textur wäre nur noch
+     Muster hinter Text. */
+  @media (prefers-reduced-transparency: reduce) {
+    .hc-cubes { display: none; }
+  }
+
+  /* ── Zeichnungen ──────────────────────────────────────────────
+     Ein Vokabular für Inline-SVG. Die Farben stehen hier und nicht in
+     fill- und stroke-Attributen, damit eine Zeichnung der Palette
+     folgt statt eine eigene Kopie davon zu tragen.
+
+     Geometrie eines Würfels mit Deckmittelpunkt (x,y), Halbbreite w
+     und Höhe h — dieselbe 2:1-Isometrie wie die Textur:
+
+       Deck:   M x,y      L x+w,y+w/2  L x,y+w      L x-w,y+w/2  Z
+       Links:  M x-w,y+w/2 L x,y+w     L x,y+w+h    L x-w,y+w/2+h Z
+       Rechts: M x+w,y+w/2 L x,y+w     L x,y+w+h    L x+w,y+w/2+h Z */
+  .hc-iso path { stroke-width: 1.2; stroke-linejoin: round; }
+  .hc-iso .hc-f-top   { fill: var(--hc-iso-top);   stroke: var(--hc-iso-line); }
+  .hc-iso .hc-f-left  { fill: var(--hc-iso-side);  stroke: var(--hc-iso-line-dim); }
+  .hc-iso .hc-f-right { fill: var(--hc-iso-shade); stroke: var(--hc-iso-line-dim); }
+
+  .hc-iso--lit .hc-f-top   { fill: var(--hc-iso-lit-top);   stroke: var(--hc-iso-lit-line); }
+  .hc-iso--lit .hc-f-left  { fill: var(--hc-iso-lit-side);  stroke: var(--hc-iso-lit-dim); }
+  .hc-iso--lit .hc-f-right { fill: var(--hc-iso-lit-shade); stroke: var(--hc-iso-lit-dim); }
+
+  /* Gestrichelt heisst: gibt es noch nicht. */
+  .hc-iso--ghost path { fill: none; stroke: var(--hc-iso-ghost); stroke-dasharray: 5 5; }
+
+  .hc-iso-faint path { fill: none; stroke: var(--hc-iso-faint); stroke-width: 1; }
+
+  .hc-dot      { fill: var(--hc-brass); }
+  .hc-dot--new { fill: var(--hc-ink); }
+
+  /* Gestrichelt und mit Kopf: etwas bewegt sich von hier nach dort. */
+  .hc-flow      { fill: none; stroke: var(--hc-flow-line); stroke-width: 1.2; stroke-dasharray: 4 5; }
+  .hc-flow-head { fill: var(--hc-flow-head); stroke: none; }
+
+  /* Durchgezogen und mit Punkten: eine Abfolge von Stationen. */
+  .hc-rail      { fill: none; stroke: var(--hc-rail-line); stroke-width: 1.2; }
+  .hc-rail-drop { fill: none; stroke: var(--hc-rail-drop); stroke-width: 1; stroke-dasharray: 2 6; }
+  .hc-tick      { fill: var(--hc-iso-line); }
+  .hc-tick--lit { fill: var(--hc-brass); }
+
+  .hc-lbl {
+    font-family: var(--hc-font-sans);
+    font-size: 13px; fill: var(--hc-ink-3);
+  }
+  .hc-lbl--mono { font-family: var(--hc-font-mono); font-size: 12px; }
+  .hc-lbl--dim  { fill: var(--hc-ink-3); opacity: .72; }
+
+  /* Flächen für Karten und Seiten in einer Zeichnung. */
+  .hc-draw-card rect, .hc-draw-page rect {
+    fill: var(--hc-pane); stroke: var(--hc-pane-edge); stroke-width: 1;
+  }
+  .hc-draw-rule { stroke: var(--hc-pane-edge); stroke-width: 1; }
+  .hc-draw-bar  { stroke-linecap: round; stroke-width: 4; fill: none; }
+  .hc-draw-bar--long  { stroke: var(--hc-iso-bar-1); }
+  .hc-draw-bar--mid   { stroke: var(--hc-iso-bar-2); }
+  .hc-draw-bar--short { stroke: var(--hc-iso-bar-3); }
+}

@@ -16,11 +16,14 @@
 <link rel="stylesheet" href="../css/tokens.css">
 <link rel="stylesheet" href="../css/base.css">
 <link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/motif.css">
 <link rel="stylesheet" href="page.css">
 </head>
 <body>
 
 <a class="hc-skip" href="#inhalt">Zum Inhalt</a>
+
+<div class="hc-cubes" aria-hidden="true"></div>
 
 <header class="hc-bar">
   <div class="hc-wide hc-bar__inner">
@@ -30,6 +33,8 @@
       <a href="#schrift">Schrift</a>
       <a href="#raster">Raster</a>
       <a href="#bausteine">Bausteine</a>
+      <a href="#motiv">Motiv</a>
+      <a href="#logo">Logo</a>
       <a href="#einbinden">Einbinden</a>
     </nav>
   </div>
@@ -285,9 +290,323 @@
     </dl>
   </section>
 
+
+  <!-- ── Motiv ─────────────────────────────────────────────── -->
+  <section class="doc-sec" id="motiv">
+    <p class="hc-eyebrow"><b>05</b> Motiv</p>
+    <h2 class="hc-title">Der Würfel</h2>
+    <p class="hc-muted doc-intro">Er steckt im Namen holzkube, im Logo und in der
+      Textur hinter dieser Seite. Alles in 2:1-Isometrie, also derselben Geometrie
+      wie das Logo — die Zeichnungen und die Marke sind dasselbe Objekt.</p>
+
+    <h3 class="doc-h3">Textur · <code>.hc-cubes</code></h3>
+    <p class="hc-muted doc-intro">Liegt gerade hinter dieser Seite. Sie ist als
+      <em>Maske</em> über einer Farbfläche gebaut, nicht als farbiges Bild: eine
+      Farbe in einer data-URI wäre der eine Wert im System, der
+      <code>--hc-brass</code> nicht folgen könnte.</p>
+    <div class="hc-alert hc-alert--warn doc-note">
+      <div><strong>Die Textur ist keine Zierde.</strong> Ein
+      <code>backdrop-filter</code> braucht Kanten zum Brechen. Über einem glatten
+      Verlauf liest sich eine gefrostete Fläche als brauner Lack, nicht als Glas.
+      Wer <code>.hc-pane</code> benutzt und die Textur weglässt, nimmt dem Glas
+      das Glas.</div>
+    </div>
+
+    <h3 class="doc-h3">Vokabular · <code>.hc-iso</code></h3>
+    <figure class="hc-pane hc-pane--pad doc-figure">
+      <svg viewBox="0 24 620 276" fill="none" role="img" aria-labelledby="m-t" focusable="false">
+        <title id="m-t">Eine unkonfigurierte Maschine wird über eine erzeugte Konfiguration zum Node im Cluster.</title>
+        <g class="hc-iso hc-iso--ghost">
+          <path class="hc-f-top"   d="M96 52 L140 74 L96 96 L52 74 Z" />
+          <path class="hc-f-left"  d="M52 74 L96 96 L96 130 L52 108 Z" />
+          <path class="hc-f-right" d="M140 74 L96 96 L96 130 L140 108 Z" />
+        </g>
+        <path class="hc-flow" d="M148 90 C 172 90, 176 100, 194 100" />
+        <path class="hc-flow-head" d="M188 94 L200 100 L188 106 Z" />
+        <g class="hc-draw-card">
+          <rect x="200" y="48" width="180" height="104" rx="10" />
+          <path class="hc-draw-rule" d="M200 76 H380" />
+          <text class="hc-lbl hc-lbl--mono" x="216" y="69">machineconfig.yaml</text>
+          <path class="hc-draw-bar hc-draw-bar--long"  d="M216 98 H358" />
+          <path class="hc-draw-bar hc-draw-bar--mid"   d="M216 114 H328" />
+          <path class="hc-draw-bar hc-draw-bar--short" d="M216 130 H288" />
+        </g>
+        <path class="hc-flow" d="M384 100 C 404 100, 406 92, 422 86" />
+        <path class="hc-flow-head" d="M416 80 L428 86 L416 92 Z" />
+        <g class="hc-iso">
+          <path class="hc-f-top"   d="M474 52 L514 72 L474 92 L434 72 Z" />
+          <path class="hc-f-left"  d="M434 72 L474 92 L474 126 L434 106 Z" />
+          <path class="hc-f-right" d="M514 72 L474 92 L474 126 L514 106 Z" />
+        </g>
+        <g class="hc-iso">
+          <path class="hc-f-top"   d="M554 52 L594 72 L554 92 L514 72 Z" />
+          <path class="hc-f-left"  d="M514 72 L554 92 L554 126 L514 106 Z" />
+          <path class="hc-f-right" d="M594 72 L554 92 L554 126 L594 106 Z" />
+        </g>
+        <g class="hc-iso hc-iso--lit">
+          <path class="hc-f-top"   d="M514 92 L554 112 L514 132 L474 112 Z" />
+          <path class="hc-f-left"  d="M474 112 L514 132 L514 166 L474 146 Z" />
+          <path class="hc-f-right" d="M554 112 L514 132 L514 166 L554 146 Z" />
+        </g>
+        <circle class="hc-dot" cx="474" cy="72" r="3.5" />
+        <circle class="hc-dot" cx="554" cy="72" r="3.5" />
+        <circle class="hc-dot hc-dot--new" cx="514" cy="112" r="4.5" />
+        <path class="hc-rail-drop" d="M96 130 V244" />
+        <path class="hc-rail-drop" d="M290 152 V244" />
+        <path class="hc-rail-drop" d="M514 166 V244" />
+        <path class="hc-rail" d="M52 250 H594" />
+        <circle class="hc-tick" cx="96"  cy="250" r="3.5" />
+        <circle class="hc-tick" cx="290" cy="250" r="3.5" />
+        <circle class="hc-tick hc-tick--lit" cx="514" cy="250" r="4.5" />
+        <text class="hc-lbl" x="96"  y="276" text-anchor="middle">blankes Blech</text>
+        <text class="hc-lbl" x="290" y="276" text-anchor="middle">Konfiguration</text>
+        <text class="hc-lbl" x="514" y="276" text-anchor="middle">Node im Cluster</text>
+      </svg>
+    </figure>
+    <p class="hc-dim doc-small">Kein <code>fill</code>, kein <code>stroke</code> im
+      Markup — die Zeichnung folgt der Palette, statt eine eigene Kopie davon zu
+      tragen. <code>.hc-iso--lit</code> ist der eine Würfel, den das Auge zuerst
+      finden soll; <code>.hc-iso--ghost</code> ist etwas, das es noch nicht gibt.</p>
+
+    <h3 class="doc-h3">Geometrie</h3>
+<pre class="doc-code"><code>Deckmittelpunkt (x,y), Halbbreite w, Höhe h — 2:1-Isometrie:
+
+  Deck:   M x,y       L x+w,y+w/2  L x,y+w     L x-w,y+w/2   Z
+  Links:  M x-w,y+w/2 L x,y+w      L x,y+w+h   L x-w,y+w/2+h Z
+  Rechts: M x+w,y+w/2 L x,y+w      L x,y+w+h   L x+w,y+w/2+h Z
+
+Ein Kreis auf der Deckfläche wird zur Ellipse mit rx:ry = 2:1
+und waagrechter Hauptachse — ohne transform, sonst skaliert
+die Strichbreite mit.</code></pre>
+  </section>
+
+  <!-- ── Logo ──────────────────────────────────────────────── -->
+  <section class="doc-sec" id="logo">
+    <p class="hc-eyebrow"><b>06</b> Logo</p>
+    <h2 class="hc-title">holzkube, als Hirnholz</h2>
+    <p class="hc-muted doc-intro">Der Name in einem Zeichen: der isometrische
+      Würfel ist das <em>Kube</em>, die Jahrringe auf der Schnittfläche sind das
+      <em>Holz</em>. Ein quadratisch abgelängter Balken zeigt genau das — und der
+      Würfel ist dieselbe Geometrie, die schon hinter der Seite liegt.</p>
+
+    <div class="doc-logo-row">
+      <div><svg width="128" height="128" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hk-top-m0"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hk-top-m0)" stroke="currentColor" stroke-width="1.6" opacity=".75">
+    <ellipse cx="25" cy="18" rx="6"  ry="3"/>
+    <ellipse cx="25" cy="18" rx="12" ry="6"/>
+    <ellipse cx="25" cy="18" rx="19" ry="9.5"/>
+    <ellipse cx="25" cy="18" rx="27" ry="13.5"/>
+  </g>
+</svg><small>128px</small></div>
+      <div><svg width="72" height="72" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hk-top-m1"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hk-top-m1)" stroke="currentColor" stroke-width="1.6" opacity=".75">
+    <ellipse cx="25" cy="18" rx="6"  ry="3"/>
+    <ellipse cx="25" cy="18" rx="12" ry="6"/>
+    <ellipse cx="25" cy="18" rx="19" ry="9.5"/>
+    <ellipse cx="25" cy="18" rx="27" ry="13.5"/>
+  </g>
+</svg><small>72px</small></div>
+      <div><svg width="48" height="48" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hk-top-m2"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hk-top-m2)" stroke="currentColor" stroke-width="1.6" opacity=".75">
+    <ellipse cx="25" cy="18" rx="6"  ry="3"/>
+    <ellipse cx="25" cy="18" rx="12" ry="6"/>
+    <ellipse cx="25" cy="18" rx="19" ry="9.5"/>
+    <ellipse cx="25" cy="18" rx="27" ry="13.5"/>
+  </g>
+</svg><small>48px</small></div>
+      <div><svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hk-top-m3"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hk-top-m3)" stroke="currentColor" stroke-width="1.6" opacity=".75">
+    <ellipse cx="25" cy="18" rx="6"  ry="3"/>
+    <ellipse cx="25" cy="18" rx="12" ry="6"/>
+    <ellipse cx="25" cy="18" rx="19" ry="9.5"/>
+    <ellipse cx="25" cy="18" rx="27" ry="13.5"/>
+  </g>
+</svg><small>32px</small></div>
+      <div><svg width="24" height="24" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hk-top-m4"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hk-top-m4)" stroke="currentColor" stroke-width="1.6" opacity=".75">
+    <ellipse cx="25" cy="18" rx="6"  ry="3"/>
+    <ellipse cx="25" cy="18" rx="12" ry="6"/>
+    <ellipse cx="25" cy="18" rx="19" ry="9.5"/>
+    <ellipse cx="25" cy="18" rx="27" ry="13.5"/>
+  </g>
+</svg><small>24px</small></div>
+      <div class="doc-on-ink"><svg width="72" height="72" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hk-top-mi"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hk-top-mi)" stroke="currentColor" stroke-width="1.6" opacity=".75">
+    <ellipse cx="25" cy="18" rx="6"  ry="3"/>
+    <ellipse cx="25" cy="18" rx="12" ry="6"/>
+    <ellipse cx="25" cy="18" rx="19" ry="9.5"/>
+    <ellipse cx="25" cy="18" rx="27" ry="13.5"/>
+  </g>
+</svg><small>auf Tinte</small></div>
+    </div>
+
+    <h3 class="doc-h3">Lockup</h3>
+    <div class="doc-logo-lockup"><svg width="260" height="64" viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hkl-top-lk"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hkl-top-lk)" stroke="currentColor" stroke-width="1.6" opacity=".75">
+    <ellipse cx="25" cy="18" rx="6"  ry="3"/>
+    <ellipse cx="25" cy="18" rx="12" ry="6"/>
+    <ellipse cx="25" cy="18" rx="19" ry="9.5"/>
+    <ellipse cx="25" cy="18" rx="27" ry="13.5"/>
+  </g>
+  <text x="84" y="41" fill="currentColor" font-family="Manrope, ui-sans-serif, system-ui, sans-serif" font-size="30" letter-spacing="-.5">
+    <tspan font-weight="200">holz</tspan><tspan font-weight="500">kube</tspan>
+  </text>
+</svg></div>
+    <p class="hc-dim doc-small">Abstand zwischen Marke und Wortmarke ist die halbe
+      Würfelbreite. „holz“ mager, „kube“ halbfett — dieselbe Teilung wie im
+      holzcloud-Schriftzug, damit beide als Familie lesen.</p>
+
+    <h3 class="doc-h3">Kleine Fassung</h3>
+    <div class="doc-logo-row">
+      <div><svg width="72" height="72" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hks-top-s0"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hks-top-s0)" stroke="currentColor" stroke-width="2.6">
+    <ellipse cx="25" cy="18" rx="8"  ry="4"/>
+    <ellipse cx="25" cy="18" rx="18" ry="9"/>
+  </g>
+</svg><small>72px</small></div>
+      <div><svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hks-top-s1"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hks-top-s1)" stroke="currentColor" stroke-width="2.6">
+    <ellipse cx="25" cy="18" rx="8"  ry="4"/>
+    <ellipse cx="25" cy="18" rx="18" ry="9"/>
+  </g>
+</svg><small>32px</small></div>
+      <div><svg width="24" height="24" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hks-top-s2"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hks-top-s2)" stroke="currentColor" stroke-width="2.6">
+    <ellipse cx="25" cy="18" rx="8"  ry="4"/>
+    <ellipse cx="25" cy="18" rx="18" ry="9"/>
+  </g>
+</svg><small>24px</small></div>
+      <div><svg width="20" height="20" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hks-top-s3"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hks-top-s3)" stroke="currentColor" stroke-width="2.6">
+    <ellipse cx="25" cy="18" rx="8"  ry="4"/>
+    <ellipse cx="25" cy="18" rx="18" ry="9"/>
+  </g>
+</svg><small>20px</small></div>
+      <div><svg width="16" height="16" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hks-top-s4"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hks-top-s4)" stroke="currentColor" stroke-width="2.6">
+    <ellipse cx="25" cy="18" rx="8"  ry="4"/>
+    <ellipse cx="25" cy="18" rx="18" ry="9"/>
+  </g>
+</svg><small>16px</small></div>
+    </div>
+    <p class="hc-dim doc-small">Ab etwa 24px abwärts. Zwei Ringe statt vier und ein
+      dickerer Strich: bei 16px laufen vier Ringe zu einem Fleck zusammen, und
+      übrig bliebe ein Würfel mit einem Schmutzrand.</p>
+
+    <h3 class="doc-h3">Verworfen, und warum</h3>
+    <div class="doc-logo-row">
+      <div><svg width="72" height="72" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g stroke="currentColor" stroke-width="1.6" opacity=".55">
+    <path d="M14.67 25.33 L40.67 12.33"/>
+    <path d="M23.33 29.67 L49.33 16.67"/>
+  </g>
+</svg><small>drei Bretter</small></div>
+      <div><svg width="72" height="72" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g stroke="currentColor" stroke-width="2" stroke-linejoin="round" opacity=".45">
+    <path d="M32 4 L60 18 L60 46 L32 60 L4 46 L4 18 Z"/>
+    <path d="M32 4 L32 32 M32 32 L4 18 M32 32 L60 18"/>
+  </g>
+  <g fill="currentColor">
+    <path d="M32 20 L44 26 L32 32 L20 26 Z" opacity=".95"/>
+    <path d="M20 26 L32 32 L32 44 L20 38 Z" opacity=".55"/>
+    <path d="M44 26 L32 32 L32 44 L44 38 Z" opacity=".72"/>
+  </g>
+</svg><small>Cluster im Kasten</small></div>
+    </div>
+    <p class="hc-dim doc-small">Links drei verleimte Bretter: sauber, aber es ist
+      ein Paketkarton, und davon gibt es genug. Rechts ein Würfel im Kasten: sagt
+      Cluster, sagt aber nichts über Holz — von zwei Silben im Namen bleibt eine
+      übrig.</p>
+
+    <h3 class="doc-h3">Dateien</h3>
+    <dl class="hc-defs">
+      <div><dt>mark</dt><dd><code>logo/holzkube-mark.svg</code> — ab 24px, zeichnet in <code>currentColor</code></dd></div>
+      <div><dt>mark-small</dt><dd><code>logo/holzkube-mark-small.svg</code> — darunter</dd></div>
+      <div><dt>lockup</dt><dd><code>logo/holzkube-lockup.svg</code> — Marke und Wortmarke</dd></div>
+      <div><dt>favicon</dt><dd><code>logo/holzkube-favicon.svg</code> — feste Farbe, weil ein Tab keine Textfarbe mitgibt</dd></div>
+    </dl>
+  </section>
+
   <!-- ── Einbinden ─────────────────────────────────────────── -->
   <section class="doc-sec" id="einbinden">
-    <p class="hc-eyebrow"><b>05</b> Einbinden</p>
+    <p class="hc-eyebrow"><b>07</b> Einbinden</p>
     <h2 class="hc-title">Drei Wege hinein</h2>
 
     <h3 class="doc-h3">Statisches HTML — holzcloud.ch, Authentik, Homepage</h3>

@@ -169,6 +169,44 @@
     --hc-measure:      66ch;
     --hc-gutter:       clamp(20px, 4vw, 64px);
 
+    /* ── Motiv ────────────────────────────────────────────────
+       Der isometrische Würfel ist das Zeichen der Marke: er steckt im
+       Namen holzkube, im Logo und in der Textur hinter jeder Seite.
+
+       Die Textur ist eine Maske, kein farbiges Bild. Eine Farbe in
+       einer data-URI wäre die eine Stelle, an der ein Wert dem Token
+       nicht folgen kann — als Maske über --hc-brass folgt sie. */
+    --hc-cubes-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='320' viewBox='0 0 280 320'><g fill='none' stroke='white' stroke-width='1.1'><path d='M64 44 L114 72 L114 130 L64 102 Z'/><path d='M164 44 L114 72 L114 130 L164 102 Z'/><path d='M64 44 L114 16 L164 44 L114 72 Z'/><path d='M204 188 L244 211 L244 258 L204 235 Z'/><path d='M284 188 L244 211 L244 258 L284 235 Z'/><path d='M204 188 L244 165 L284 188 L244 211 Z'/><path d='M-6 208 L34 231 L34 278 L-6 255 Z'/><path d='M74 208 L34 231 L34 278 L74 255 Z'/><path d='M-6 208 L34 185 L74 208 L34 231 Z'/></g></svg>");
+    --hc-cubes-size:    280px 320px;
+    --hc-cubes-opacity: .085;
+
+    /* Drei Flächen, drei Helligkeiten — mehr braucht ein Würfel nicht,
+       um räumlich zu wirken. */
+    --hc-iso-top:        rgb(240 174 95 / .13);
+    --hc-iso-side:       rgb(255 240 220 / .035);
+    --hc-iso-shade:      rgb(0 0 0 / .16);
+    --hc-iso-line:       rgb(240 174 95 / .40);
+    --hc-iso-line-dim:   rgb(240 174 95 / .26);
+    /* Der eine Würfel, den das Auge zuerst finden soll. */
+    --hc-iso-lit-top:    rgb(240 174 95 / .28);
+    --hc-iso-lit-side:   rgb(240 174 95 / .08);
+    --hc-iso-lit-shade:  rgb(0 0 0 / .22);
+    --hc-iso-lit-line:   var(--hc-brass);
+    --hc-iso-lit-dim:    rgb(240 174 95 / .60);
+    /* Etwas, das es noch nicht gibt. */
+    --hc-iso-ghost:      rgb(246 239 230 / .30);
+    --hc-iso-faint:      rgb(240 174 95 / .13);
+
+    --hc-flow-line:      rgb(246 239 230 / .28);
+    --hc-flow-head:      rgb(246 239 230 / .45);
+    --hc-rail-line:      rgb(240 174 95 / .26);
+    --hc-rail-drop:      rgb(246 239 230 / .14);
+    /* Textzeilen in einer Zeichnung. Drei Stufen, damit ein Absatz
+       nicht als gleichmässiges Streifenmuster liest. */
+    --hc-iso-bar-1:      rgb(246 239 230 / .26);
+    --hc-iso-bar-2:      rgb(246 239 230 / .18);
+    --hc-iso-bar-3:      rgb(246 239 230 / .12);
+
     /* ── Focus ────────────────────────────────────────────────
        One ring everywhere. Brass, offset, never removed. */
     --hc-focus:        var(--hc-brass);

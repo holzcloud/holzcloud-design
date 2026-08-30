@@ -12,15 +12,23 @@
      <link rel="stylesheet" href="/css/base.css">
      <link rel="stylesheet" href="/css/components.css">
 
-   The shadcn bridge is deliberately not here: it belongs only to
-   projects that use shadcn, and it has to load after Tailwind.
+   Two files are deliberately not here. The shadcn bridge belongs only
+   to projects that use shadcn and has to load after Tailwind. And
+   motif.css — the cube texture and the drawing vocabulary — belongs
+   only to surfaces that show the motif; an administration screen does
+   not, and should not load it.
+
+   But note what motif.css says about itself: if you put .hc-pane over
+   the gradient, the texture is not decoration. A backdrop-filter needs
+   edges to refract, and over a smooth gradient a frosted pane reads as
+   brown paint. Link it too, or the glass stops being glass.
    ══════════════════════════════════════════════════════════════ */
 
 /* Declared before the imports so the order holds no matter which file
    the browser happens to finish first. Anything a project writes
    outside a layer wins over all three, which is how it should be: the
    design system is the default, not the last word. */
-@layer hc.tokens, hc.base, hc.components;
+@layer hc.tokens, hc.base, hc.components, hc.motif;
 
 @import url("tokens.css");
 @import url("base.css");

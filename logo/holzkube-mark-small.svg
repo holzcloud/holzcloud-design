@@ -1,0 +1,16 @@
+<!-- holzkube, klein. Ab etwa 24px abwärts, und als Favicon.
+     Zwei Ringe statt vier und ein dickerer Strich: bei 16px laufen
+     vier Ringe zu einem Fleck zusammen, und übrig bliebe ein Würfel
+     mit einem Schmutzrand. Zwei Ringe bleiben zwei Ringe. -->
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="holzkube">
+  <defs><clipPath id="hks-top"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hks-top)" stroke="currentColor" stroke-width="2.6">
+    <ellipse cx="25" cy="18" rx="8"  ry="4"/>
+    <ellipse cx="25" cy="18" rx="18" ry="9"/>
+  </g>
+</svg>

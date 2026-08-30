@@ -1,0 +1,15 @@
+<!-- Favicon. Wie die kleine Fassung, aber mit fester Farbe statt
+     currentColor: ein Browser-Tab gibt der Datei keine Textfarbe mit,
+     und currentColor wäre dort schwarz. -->
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs><clipPath id="hkf-top"><path d="M32 8 L58 21 L32 34 L6 21 Z"/></clipPath></defs>
+  <g stroke="#F0AE5F" stroke-width="3" stroke-linejoin="round">
+    <path d="M32 8 L58 21 L32 34 L6 21 Z"/>
+    <path d="M6 21 L32 34 L32 56 L6 43 Z"/>
+    <path d="M58 21 L32 34 L32 56 L58 43 Z"/>
+  </g>
+  <g clip-path="url(#hkf-top)" stroke="#F0AE5F" stroke-width="2.6">
+    <ellipse cx="25" cy="18" rx="8"  ry="4"/>
+    <ellipse cx="25" cy="18" rx="18" ry="9"/>
+  </g>
+</svg>

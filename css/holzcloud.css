@@ -1,0 +1,27 @@
+/* ══════════════════════════════════════════════════════════════
+   holzcloud, in one import.
+
+     <link rel="stylesheet" href="/css/holzcloud.css">
+
+   Convenient, and one request slower than it needs to be: an @import
+   is only discovered once this file has been fetched and parsed. On a
+   page where that matters, link the three in order instead — they are
+   the same files and the layer order below is declared in each.
+
+     <link rel="stylesheet" href="/css/tokens.css">
+     <link rel="stylesheet" href="/css/base.css">
+     <link rel="stylesheet" href="/css/components.css">
+
+   The shadcn bridge is deliberately not here: it belongs only to
+   projects that use shadcn, and it has to load after Tailwind.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Declared before the imports so the order holds no matter which file
+   the browser happens to finish first. Anything a project writes
+   outside a layer wins over all three, which is how it should be: the
+   design system is the default, not the last word. */
+@layer hc.tokens, hc.base, hc.components;
+
+@import url("tokens.css");
+@import url("base.css");
+@import url("components.css");

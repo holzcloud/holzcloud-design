@@ -1,0 +1,178 @@
+/* ══════════════════════════════════════════════════════════════
+   holzcloud design tokens
+
+   The single place a value is decided. Everything else in this
+   repository — and everything in holzcloud-web, holzkube,
+   holzcloud-cms, the Authentik login and the Homepage dashboard —
+   reads from here and defines nothing of its own.
+
+   If you are about to write a colour, a radius or a font size as a
+   literal anywhere else, that is the bug this file exists to prevent.
+
+   One theme, and it is dark. Every holzcloud surface is dark; a light
+   theme would be a second brand nobody has asked for. Should one ever
+   be needed, it is one extra block redefining these same names — which
+   is exactly why nothing below is called "dark".
+   ══════════════════════════════════════════════════════════════ */
+@layer hc.tokens {
+  :root {
+    /* ── Ground ───────────────────────────────────────────────
+       The page sits on a near-black base with three coloured washes
+       over it. The violet at the bottom is not decoration: without it
+       the browns read as sepia. */
+    --hc-ground:       #0A0705;
+    --hc-ground-2:     #140D08;
+    --hc-wash-warm:    rgb(138 83 38 / .55);
+    --hc-wash-brass:   rgb(240 174 95 / .28);
+    --hc-wash-violet:  rgb(107 63 122 / .26);
+
+    /* The whole background as one value, so a surface only has to say
+       `background: var(--hc-ground-image)` to be part of the family. */
+    --hc-ground-image:
+      radial-gradient(60% 50% at 20% 16%, var(--hc-wash-warm)   0%, transparent 100%),
+      radial-gradient(46% 40% at 84% 26%, var(--hc-wash-brass)  0%, transparent 100%),
+      radial-gradient(55% 48% at 60% 95%, var(--hc-wash-violet) 0%, transparent 100%),
+      linear-gradient(160deg, var(--hc-ground-2) 0%, var(--hc-ground) 100%);
+
+    /* ── Brand ────────────────────────────────────────────────
+       One accent. A second would make the first mean nothing. */
+    --hc-brass:        #F0AE5F;
+    --hc-brass-soft:   rgb(240 174 95 / .40);
+    --hc-brass-wash:   rgb(240 174 95 / .10);
+    /* Start and end of the pulse ring. The end is the same colour at
+       zero alpha rather than `transparent`, so the animation fades out
+       instead of travelling through grey on its way there. */
+    --hc-brass-pulse:     rgb(240 174 95 / .5);
+    --hc-brass-pulse-out: rgb(240 174 95 / 0);
+    /* Ink for text sitting *on* a brass fill. Never --hc-ink there. */
+    --hc-on-brass:     #150E08;
+
+    /* ── Ink ──────────────────────────────────────────────────
+       Three steps, and the third is the floor. --hc-ink-3 carries the
+       smallest type in the system — labels, chips, footers — and at
+       .52 it lands between 4.5:1 and 4.9:1 against the range this
+       ground actually produces. It was .42 once and failed AA.
+       Lower it and small text goes with it. */
+    --hc-ink:          #F6EFE6;
+    --hc-ink-2:        rgb(246 239 230 / .70);
+    --hc-ink-3:        rgb(246 239 230 / .52);
+
+    /* ── Surfaces ─────────────────────────────────────────────
+       Glass. --hc-pane-solid is the same surface for browsers without
+       backdrop-filter and for anyone who asked for less transparency;
+       it is a real colour, not an alpha, on purpose. */
+    --hc-pane:         rgb(255 248 240 / .055);
+    --hc-pane-solid:   #20150D;
+    --hc-pane-edge:    rgb(255 226 190 / .14);
+    --hc-pane-lift:    rgb(240 174 95 / .40);
+    --hc-hairline:     rgb(255 226 190 / .10);
+    --hc-blur:         blur(24px) saturate(150%);
+    --hc-blur-bar:     blur(18px) saturate(140%);
+    /* The sticky bar is darker than a pane: it has the whole page
+       moving underneath it, not just the ground. */
+    --hc-pane-bar:       rgb(14 9 5 / .55);
+    --hc-pane-bar-solid: rgb(14 9 5 / .97);
+    /* Inputs sit *below* the surface they are on, so they are darker
+       than the pane rather than lighter. */
+    --hc-pane-sunken:    rgb(0 0 0 / .22);
+
+    /* ── Status ───────────────────────────────────────────────
+       Each one clears 4.5:1 against both ends of the ground, so they
+       are safe as text and not only as dots.
+
+       --hc-warn is a near neighbour of --hc-brass, and that is not an
+       accident to be fixed: the brand accent *is* amber. Never let
+       colour alone carry the difference between "attention" and
+       "warning" — give the warning a word or an icon too. */
+    --hc-ok:           #8CC271;
+    --hc-warn:         #E8C15C;
+    --hc-danger:       #EC8272;
+    --hc-info:         #8FB8D8;
+    --hc-ok-wash:      rgb(140 194 113 / .12);
+    --hc-warn-wash:    rgb(232 193 92 / .12);
+    --hc-danger-wash:  rgb(236 130 114 / .12);
+    --hc-info-wash:    rgb(143 184 216 / .12);
+
+    /* ── Radius ───────────────────────────────────────────────
+       Two real sizes and a pill. --hc-r is the pane; --hc-r-sm is what
+       sits inside one, so the inner corner never fights the outer. */
+    --hc-r-sm:         8px;
+    --hc-r:            16px;
+    --hc-r-lg:         24px;
+    --hc-r-pill:       999px;
+
+    /* ── Space ────────────────────────────────────────────────
+       A 4px grid. Named by step, not by intent, because the same
+       distance means different things in different places. */
+    --hc-space-1:      4px;
+    --hc-space-2:      8px;
+    --hc-space-3:      12px;
+    --hc-space-4:      16px;
+    --hc-space-5:      24px;
+    --hc-space-6:      32px;
+    --hc-space-7:      48px;
+    --hc-space-8:      64px;
+    --hc-space-9:      96px;
+
+    /* ── Type ─────────────────────────────────────────────────
+       Manrope for text, JetBrains Mono for anything a machine wrote:
+       identifiers, versions, labels, log lines. The distinction is the
+       point — if it is mono, it is literal. */
+    --hc-font-sans:    Manrope, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --hc-font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --hc-text-label:   11px;    /* mono, uppercase, tracked out */
+    --hc-text-xs:      12px;
+    --hc-text-sm:      14px;
+    --hc-text-base:    17px;
+    --hc-text-lg:      19px;
+    --hc-text-xl:      25px;
+    --hc-text-2xl:     34px;
+
+    /* Display sizes are fluid: they are the only type large enough for
+       the difference between a phone and a monitor to matter. */
+    --hc-display-sm:   clamp(23px, 2.6vw, 30px);
+    --hc-display:      clamp(30px, 3.4vw, 50px);
+    --hc-display-lg:   clamp(40px, 5.4vw, 80px);
+
+    --hc-weight-thin:      200;
+    --hc-weight-regular:   400;
+    --hc-weight-medium:    500;
+    --hc-weight-semibold:  600;
+
+    --hc-track-tight:  -.03em;
+    --hc-track-snug:   -.015em;
+    --hc-track-wide:   .1em;
+    --hc-track-widest: .2em;
+
+    --hc-leading-tight: 1.07;
+    --hc-leading-snug:  1.3;
+    --hc-leading-base:  1.65;
+
+    /* ── Elevation ────────────────────────────────────────────
+       The inset highlight is half of what makes a pane look like glass
+       rather than a grey box. Do not drop it to "simplify". */
+    --hc-shadow-pane:  inset 0 1px 0 rgb(255 240 220 / .14), 0 16px 40px rgb(0 0 0 / .45);
+    --hc-shadow-lift:  inset 0 1px 0 rgb(255 240 220 / .18), 0 22px 56px rgb(0 0 0 / .55);
+
+    /* ── Motion ───────────────────────────────────────────────
+       Short enough that nobody waits for it. */
+    --hc-dur-fast:     .16s;
+    --hc-dur-base:     .24s;
+    --hc-ease:         cubic-bezier(.2, .7, .3, 1);
+
+    /* ── Layout ───────────────────────────────────────────────
+       --hc-wide is the page; --hc-measure is how wide a paragraph is
+       allowed to get inside it. They are different numbers because a
+       wide page and a readable line are different problems. */
+    --hc-wide:         1600px;
+    --hc-measure:      66ch;
+    --hc-gutter:       clamp(20px, 4vw, 64px);
+
+    /* ── Focus ────────────────────────────────────────────────
+       One ring everywhere. Brass, offset, never removed. */
+    --hc-focus:        var(--hc-brass);
+    --hc-focus-width:  2px;
+    --hc-focus-offset: 3px;
+  }
+}

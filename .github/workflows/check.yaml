@@ -1,0 +1,60 @@
+# Nothing is built here — the CSS that ships is the CSS in the repository.
+# This job only checks the rules that keep it a system rather than a folder
+# of stylesheets, and each of them fails the build rather than warning.
+name: check
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Every var(--hc-…) resolves, braces balance, no literal colour in
+      # components.css, and the specimen links files that exist.
+      - name: Rules
+        run: python3 tools/check.py
+
+      # tokens.json is generated from tokens.css. A stale copy is worse
+      # than none, because something downstream will trust it.
+      - name: tokens.json is current
+        run: python3 tools/tokens.py --check
+
+      # The specimen is the documentation; if it stops parsing, the
+      # documentation is gone and nothing else would notice.
+      - name: Specimen is well formed
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          import sys, pathlib
+          VOID = {'area','base','br','col','embed','hr','img','input',
+                  'link','meta','source','track','wbr'}
+          class P(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.stack=[]; self.errors=[]
+              def handle_starttag(self, tag, attrs):
+                  if tag not in VOID: self.stack.append((tag, self.getpos()))
+              def handle_endtag(self, tag):
+                  if not self.stack:
+                      self.errors.append(f"</{tag}> with no opening tag at {self.getpos()}"); return
+                  top, pos = self.stack.pop()
+                  if top != tag:
+                      self.errors.append(f"</{tag}> closes <{top}> opened at {pos}")
+          p = P(); p.feed(pathlib.Path('docs/index.html').read_text(encoding='utf-8'))
+          for e in p.errors: print("ERROR:", e)
+          for t, pos in p.stack: print(f"ERROR: <{t}> never closed, opened at {pos}")
+          sys.exit(1 if (p.errors or p.stack) else 0)
+          PY

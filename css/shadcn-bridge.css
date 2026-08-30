@@ -1,0 +1,96 @@
+/* ══════════════════════════════════════════════════════════════
+   shadcn / Tailwind bridge
+
+   holzkube is React with Tailwind v4 and shadcn/ui, which names its
+   colours `--background`, `--primary`, `--card` and so on. This file
+   points those names at the holzcloud tokens, so shadcn's components
+   inherit the brand without any of them being rewritten.
+
+   Import it AFTER tailwindcss and shadcn, and after tokens.css:
+
+     @import "tailwindcss";
+     @import "shadcn/tailwind.css";
+     @import "@holzcloud/design/css/tokens.css";
+     @import "@holzcloud/design/css/shadcn-bridge.css";
+
+   Then `@theme inline` keeps working exactly as generated — it reads
+   these same variable names and knows nothing about the change.
+
+   ── Two things this changes on purpose ─────────────────────────
+
+   1. It maps :root AND .dark to the same values. holzcloud has one
+      theme and it is dark; a light mode would be a second brand. If a
+      project genuinely needs light as well, drop `.dark` from the
+      selector below and give :root its own palette — the token names
+      do not change, only what they resolve to.
+
+   2. It sets --font-sans to Manrope. holzkube currently ships Geist.
+      Two typefaces across four surfaces is the most visible way for
+      them to stop looking like one product, so this is the point of
+      the file rather than an oversight — but it does mean dropping
+      the @fontsource-variable/geist import.
+   ══════════════════════════════════════════════════════════════ */
+
+:root, .dark {
+  color-scheme: dark;
+
+  --background:            var(--hc-ground);
+  --foreground:            var(--hc-ink);
+
+  /* shadcn's card and popover are the same surface holzcloud calls a
+     pane. The blur is not carried here — a variable cannot apply
+     backdrop-filter — so a card that should read as glass wants the
+     `hc-pane` class as well, or its own backdrop-filter. */
+  --card:                  var(--hc-pane);
+  --card-foreground:       var(--hc-ink);
+  --popover:               var(--hc-pane-solid);
+  --popover-foreground:    var(--hc-ink);
+
+  /* Primary is near-white, not brass. Brass is the accent that points
+     at one thing per screen; a page of brass buttons has no accent
+     left. Same reasoning as the buttons in components.css. */
+  --primary:               var(--hc-ink);
+  --primary-foreground:    var(--hc-on-brass);
+
+  --secondary:             rgb(255 248 240 / .08);
+  --secondary-foreground:  var(--hc-ink);
+
+  --muted:                 rgb(255 248 240 / .06);
+  --muted-foreground:      var(--hc-ink-3);
+
+  --accent:                var(--hc-brass-wash);
+  --accent-foreground:     var(--hc-brass);
+
+  --destructive:           var(--hc-danger);
+  --destructive-foreground: var(--hc-on-brass);
+
+  --border:                var(--hc-pane-edge);
+  --input:                 var(--hc-pane-edge);
+  --ring:                  var(--hc-focus);
+
+  --radius:                var(--hc-r);
+
+  /* Five series that stay apart on a dark ground and each clear 4.5:1
+     against both ends of it — so a chart legend can be read, not only
+     matched. Order matters: 1 is the one the eye should find first. */
+  --chart-1:               var(--hc-brass);
+  --chart-2:               var(--hc-info);
+  --chart-3:               var(--hc-ok);
+  --chart-4:               var(--hc-danger);
+  --chart-5:               var(--hc-warn);
+
+  /* The sidebar is the same surface one step darker, so it reads as
+     behind the content rather than beside it. */
+  --sidebar:                       rgb(10 7 5 / .72);
+  --sidebar-foreground:            var(--hc-ink-2);
+  --sidebar-primary:               var(--hc-brass);
+  --sidebar-primary-foreground:    var(--hc-on-brass);
+  --sidebar-accent:                var(--hc-brass-wash);
+  --sidebar-accent-foreground:     var(--hc-brass);
+  --sidebar-border:                var(--hc-hairline);
+  --sidebar-ring:                  var(--hc-focus);
+
+  --font-sans:             var(--hc-font-sans);
+  --font-mono:             var(--hc-font-mono);
+  --font-heading:          var(--hc-font-sans);
+}

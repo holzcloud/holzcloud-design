@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>holzcloud design</title>
+<meta name="description" content="Die Designvorlage hinter holzcloud.ch, holzkube, holzcloud-cms, Authentik und Homepage.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0A0705">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<!-- Die Seite lädt genau die Dateien, die ausgeliefert werden. Wenn hier
+     etwas kaputt aussieht, ist es im System kaputt und nicht in der Doku. -->
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+
+<a class="hc-skip" href="#inhalt">Zum Inhalt</a>
+
+<header class="hc-bar">
+  <div class="hc-wide hc-bar__inner">
+    <a class="hc-mark" href="#top"><b>holz</b><span>cloud</span> design</a>
+    <nav class="doc-nav" aria-label="Abschnitte">
+      <a href="#farbe">Farbe</a>
+      <a href="#schrift">Schrift</a>
+      <a href="#raster">Raster</a>
+      <a href="#bausteine">Bausteine</a>
+      <a href="#einbinden">Einbinden</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inhalt">
+<div class="hc-wide">
+
+  <section class="doc-hero" id="top">
+    <p class="hc-eyebrow"><b>v1</b> Designvorlage</p>
+    <h1 class="hc-display">Eine Oberfläche, <em>fünf Orte</em>, an denen sie auftaucht.</h1>
+    <p class="hc-lede">holzcloud.ch, holzkube, die Verwaltung von holzcloud-cms,
+      die Authentik-Anmeldung und das Homepage-Dashboard. Jeder Wert steht
+      genau einmal — in <code>css/tokens.css</code>.</p>
+    <div class="hc-row" style="margin-top: var(--hc-space-6)">
+      <a class="hc-btn" href="#einbinden">Einbinden</a>
+      <a class="hc-btn hc-btn--ghost" href="https://github.com/holzcloud/holzcloud-design" rel="noopener">Repository</a>
+    </div>
+  </section>
+
+  <!-- ── Farbe ─────────────────────────────────────────────── -->
+  <section class="doc-sec" id="farbe">
+    <p class="hc-eyebrow"><b>01</b> Farbe</p>
+    <h2 class="hc-title">Ein Grund, ein Akzent, drei Tinten</h2>
+    <p class="hc-muted doc-intro">Der Grund ist fast schwarz mit drei farbigen
+      Waschungen darüber. Das Violett unten ist keine Zierde: ohne es lesen sich
+      die Brauntöne als Sepia.</p>
+
+    <h3 class="doc-h3">Grund</h3>
+    <div class="doc-swatches">
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-ground)"></span><code>--hc-ground</code><em>#0A0705</em></div>
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-ground-2)"></span><code>--hc-ground-2</code><em>#140D08</em></div>
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-ground-image)"></span><code>--hc-ground-image</code><em>alle drei Waschungen</em></div>
+    </div>
+
+    <h3 class="doc-h3">Akzent und Tinte</h3>
+    <div class="doc-swatches">
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-brass)"></span><code>--hc-brass</code><em>#F0AE5F · 10.5:1</em></div>
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-ink)"></span><code>--hc-ink</code><em>#F6EFE6</em></div>
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-ink-2)"></span><code>--hc-ink-2</code><em>70 % · Fliesstext</em></div>
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-ink-3)"></span><code>--hc-ink-3</code><em>52 % · Untergrenze</em></div>
+    </div>
+    <div class="hc-alert hc-alert--warn doc-note">
+      <div><strong>--hc-ink-3 ist der Boden, nicht ein Vorschlag.</strong>
+      Sie trägt die kleinste Schrift im System — Labels, Chips, Fusszeilen — und
+      landet bei 52 % zwischen 4.5:1 und 4.9:1 über die Spanne, die dieser Grund
+      wirklich erzeugt. Sie stand einmal auf 42 % und fiel damit unter AA.</div>
+    </div>
+
+    <h3 class="doc-h3">Status</h3>
+    <div class="doc-swatches">
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-ok)"></span><code>--hc-ok</code><em>9.6:1 / 6.8:1</em></div>
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-warn)"></span><code>--hc-warn</code><em>11.7:1 / 8.2:1</em></div>
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-danger)"></span><code>--hc-danger</code><em>7.7:1 / 5.4:1</em></div>
+      <div class="doc-sw"><span class="doc-chip" style="background:var(--hc-info)"></span><code>--hc-info</code><em>9.6:1 / 6.8:1</em></div>
+    </div>
+    <p class="hc-dim doc-small">Zwei Werte je Farbe: gegen die dunkelste Ecke des
+      Grundes und gegen den hellsten Punkt der braunen Waschung. Beide über 4.5:1,
+      damit sie als Text taugen und nicht nur als Punkt.</p>
+    <div class="hc-alert hc-alert--info doc-note">
+      <div><strong>--hc-warn liegt nah bei --hc-brass.</strong> Das ist kein Fehler,
+      der wegzuräumen wäre: der Markenakzent <em>ist</em> Bernstein. Lass nie die
+      Farbe allein den Unterschied zwischen „Achtung“ und „Warnung“ tragen —
+      gib der Warnung ein Wort oder ein Zeichen dazu.</div>
+    </div>
+  </section>
+
+  <!-- ── Schrift ───────────────────────────────────────────── -->
+  <section class="doc-sec" id="schrift">
+    <p class="hc-eyebrow"><b>02</b> Schrift</p>
+    <h2 class="hc-title">Manrope für Text, Mono für Wörtliches</h2>
+    <p class="hc-muted doc-intro">Ist es Mono, hat es eine Maschine geschrieben:
+      Bezeichner, Versionen, Zustände, Logzeilen. Der Unterschied ist der Zweck —
+      Mono heisst wörtlich.</p>
+
+    <div class="doc-type">
+      <div class="doc-type-row">
+        <code>--hc-display-lg</code>
+        <p class="hc-display" style="max-width:none">Zwei Projekte, <em>und der Ort</em></p>
+      </div>
+      <div class="doc-type-row">
+        <code>--hc-display</code>
+        <p class="hc-title">Von blankem Blech zum Cluster-Node</p>
+      </div>
+      <div class="doc-type-row">
+        <code>--hc-text-xl</code>
+        <p class="hc-claim" style="max-width:none">Ein Binary, viele Websites.</p>
+      </div>
+      <div class="doc-type-row">
+        <code>--hc-text-lg</code>
+        <p class="hc-lede" style="max-width:none">Kein Anbieter, kein Rechenzentrum.</p>
+      </div>
+      <div class="doc-type-row">
+        <code>--hc-text-base</code>
+        <p>Fliesstext. Eine Zeile darf höchstens <code>--hc-measure</code> breit werden, auch wenn die Seite es nicht muss.</p>
+      </div>
+      <div class="doc-type-row">
+        <code>--hc-text-sm</code>
+        <p style="font-size:var(--hc-text-sm)" class="hc-muted">Sekundär: Hinweise, Tabellenzellen, Formularbeschriftungen.</p>
+      </div>
+      <div class="doc-type-row">
+        <code>--hc-text-label</code>
+        <p class="hc-eyebrow" style="display:block">Mono, versal, weit gesperrt</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Raster ────────────────────────────────────────────── -->
+  <section class="doc-sec" id="raster">
+    <p class="hc-eyebrow"><b>03</b> Raster</p>
+    <h2 class="hc-title">4er-Raster, zwei Radien, eine Pille</h2>
+
+    <h3 class="doc-h3">Abstände</h3>
+    <div class="doc-spaces">
+      <div><span style="width:var(--hc-space-1)"></span><code>1</code><em>4px</em></div>
+      <div><span style="width:var(--hc-space-2)"></span><code>2</code><em>8px</em></div>
+      <div><span style="width:var(--hc-space-3)"></span><code>3</code><em>12px</em></div>
+      <div><span style="width:var(--hc-space-4)"></span><code>4</code><em>16px</em></div>
+      <div><span style="width:var(--hc-space-5)"></span><code>5</code><em>24px</em></div>
+      <div><span style="width:var(--hc-space-6)"></span><code>6</code><em>32px</em></div>
+      <div><span style="width:var(--hc-space-7)"></span><code>7</code><em>48px</em></div>
+      <div><span style="width:var(--hc-space-8)"></span><code>8</code><em>64px</em></div>
+      <div><span style="width:var(--hc-space-9)"></span><code>9</code><em>96px</em></div>
+    </div>
+
+    <h3 class="doc-h3">Radien</h3>
+    <div class="doc-radii">
+      <div><span style="border-radius:var(--hc-r-sm)"></span><code>--hc-r-sm</code><em>8px · innen</em></div>
+      <div><span style="border-radius:var(--hc-r)"></span><code>--hc-r</code><em>16px · Fläche</em></div>
+      <div><span style="border-radius:var(--hc-r-lg)"></span><code>--hc-r-lg</code><em>24px</em></div>
+      <div><span style="border-radius:var(--hc-r-pill)"></span><code>--hc-r-pill</code><em>Pille</em></div>
+    </div>
+    <p class="hc-dim doc-small"><code>--hc-r-sm</code> ist das, was <em>in</em> einer
+      Fläche sitzt, damit die innere Ecke nicht gegen die äussere kämpft.</p>
+  </section>
+
+  <!-- ── Bausteine ─────────────────────────────────────────── -->
+  <section class="doc-sec" id="bausteine">
+    <p class="hc-eyebrow"><b>04</b> Bausteine</p>
+    <h2 class="hc-title">Alles, was es gibt</h2>
+
+    <h3 class="doc-h3">Fläche · <code>.hc-pane</code></h3>
+    <div class="doc-grid-2">
+      <div class="hc-pane hc-pane--pad">
+        <p class="hc-eyebrow">Fläche</p>
+        <h4 class="hc-title" style="font-size:var(--hc-text-xl);margin-top:var(--hc-space-3)">Die einzige Oberfläche</h4>
+        <p class="hc-muted" style="margin-top:var(--hc-space-3)">Karten, Dialoge, Leisten und Panels sind alle das hier, nur mit anderem Innenabstand.</p>
+      </div>
+      <a class="hc-pane hc-pane--pad" href="#bausteine">
+        <p class="hc-eyebrow">Anfassbar</p>
+        <h4 class="hc-title" style="font-size:var(--hc-text-xl);margin-top:var(--hc-space-3)">Hebt beim Zeigen</h4>
+        <p class="hc-muted" style="margin-top:var(--hc-space-3)">Nur, wenn ein Klick auch etwas tut. Eine Fläche, die sich hebt und dann nichts macht, lügt.</p>
+      </a>
+    </div>
+
+    <h3 class="doc-h3">Schaltflächen · <code>.hc-btn</code></h3>
+    <div class="hc-row">
+      <button class="hc-btn" type="button">Primär</button>
+      <button class="hc-btn hc-btn--ghost" type="button">Sekundär</button>
+      <button class="hc-btn hc-btn--danger" type="button">Node zurücksetzen</button>
+      <button class="hc-btn hc-btn--sm" type="button">Klein</button>
+      <button class="hc-btn" type="button" disabled>Gesperrt</button>
+    </div>
+    <p class="hc-dim doc-small">Primär ist fast weiss, nicht bernstein. Bernstein
+      zeigt auf <em>eine</em> Sache pro Bildschirm; eine Seite voller bernsteiner
+      Knöpfe hat keinen Akzent mehr. Zerstörend ist umrandet statt gefüllt — ein
+      roter Block ist das, was man am leichtesten aus Versehen trifft.</p>
+
+    <h3 class="doc-h3">Chips · <code>.hc-chip</code></h3>
+    <div class="hc-row">
+      <span class="hc-chip">Go</span>
+      <span class="hc-chip">SQLite</span>
+      <span class="hc-chip">AGPL-3.0</span>
+      <a class="hc-chip" href="#bausteine">Quellcode ↗</a>
+      <a class="hc-chip hc-chip--pending" href="#bausteine">Quellcode · bald ↗</a>
+    </div>
+
+    <h3 class="doc-h3">Zustand · <code>.hc-status</code></h3>
+    <div class="hc-row" style="gap:var(--hc-space-5)">
+      <span class="hc-status hc-status--ok">Healthy</span>
+      <span class="hc-status hc-status--warn">Degraded</span>
+      <span class="hc-status hc-status--danger">NotReady</span>
+      <span class="hc-status hc-status--info">Unbekannt</span>
+      <span class="hc-status hc-status--live">In Arbeit</span>
+    </div>
+    <p class="hc-dim doc-small">Nie der Punkt allein. Die Farbe ist das zweite
+      Signal, das Wort daneben das erste.</p>
+
+    <h3 class="doc-h3">Meldungen · <code>.hc-alert</code></h3>
+    <div class="hc-stack">
+      <div class="hc-alert hc-alert--ok"><div><strong>Upgrade fertig.</strong> Alle vier Nodes sind wieder healthy.</div></div>
+      <div class="hc-alert hc-alert--warn"><div><strong>Warnung — Kette unterbrochen.</strong> Das Audit-Log ist beim Start nicht durchgelaufen.</div></div>
+      <div class="hc-alert hc-alert--danger"><div><strong>Fehlgeschlagen.</strong> Die Konfiguration liess sich nicht anwenden; nichts wurde verändert.</div></div>
+      <div class="hc-alert hc-alert--info"><div><strong>Hinweis.</strong> Das Zertifikat ist selbst signiert. Vergleiche den Fingerabdruck, bevor du ihn annimmst.</div></div>
+    </div>
+
+    <h3 class="doc-h3">Formular · <code>.hc-field</code></h3>
+    <div class="hc-pane hc-pane--pad doc-form">
+      <div class="hc-stack">
+        <div class="hc-field">
+          <label class="hc-label" for="d1">Adresse</label>
+          <input class="hc-input" id="d1" type="text" value="127.0.0.1:8443">
+          <p class="hc-hint">Standard ist Loopback. Alles andere ist eine Entscheidung.</p>
+        </div>
+        <div class="hc-field">
+          <label class="hc-label" for="d2">Rolle</label>
+          <select class="hc-select" id="d2">
+            <option>Control Plane</option>
+            <option>Worker</option>
+          </select>
+        </div>
+        <div class="hc-field">
+          <label class="hc-label" for="d3">Sitzungsdauer</label>
+          <input class="hc-input" id="d3" type="text" value="24h" aria-invalid="true" aria-describedby="d3e">
+          <p class="hc-error" id="d3e">Braucht eine Einheit — <code>24h</code>, nicht <code>24</code>.</p>
+        </div>
+        <div class="hc-field">
+          <label class="hc-label" for="d4">Notiz</label>
+          <textarea class="hc-textarea" id="d4" placeholder="Warum diese Änderung?"></textarea>
+        </div>
+        <div class="hc-row">
+          <button class="hc-btn" type="button">Anwenden</button>
+          <button class="hc-btn hc-btn--ghost" type="button">Abbrechen</button>
+        </div>
+      </div>
+    </div>
+    <p class="hc-dim doc-small">Beschriftung oben, Hinweis darunter, Fehler zuletzt
+      und über <code>aria-invalid</code> angekündigt. Der rote Rand kann dem, was
+      vorgelesen wird, damit nicht widersprechen.</p>
+
+    <h3 class="doc-h3">Tabelle · <code>.hc-table</code></h3>
+    <div class="hc-pane hc-pane--tight">
+      <div class="hc-table-scroll">
+        <table class="hc-table">
+          <thead><tr><th>Node</th><th>Zustand</th><th>Talos</th><th class="hc-num">Speicher</th></tr></thead>
+          <tbody>
+            <tr><td>talos-cp-01</td><td><span class="hc-status hc-status--ok">Ready</span></td><td class="hc-mono">v1.11.2</td><td class="hc-num">14.2 GiB</td></tr>
+            <tr><td>talos-w-01</td><td><span class="hc-status hc-status--ok">Ready</span></td><td class="hc-mono">v1.11.2</td><td class="hc-num">31.8 GiB</td></tr>
+            <tr><td>talos-w-02</td><td><span class="hc-status hc-status--warn">Degraded</span></td><td class="hc-mono">v1.11.0</td><td class="hc-num">30.1 GiB</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="hc-dim doc-small">Linien zwischen den Zeilen, keine darum. Ein Gitter
+      aus Kästchen macht Zahlen schwerer lesbar, nicht leichter. Breite Tabellen
+      scrollen in ihrem eigenen Kasten — die Seite nie.</p>
+
+    <h3 class="doc-h3">Merkmalzeilen · <code>.hc-defs</code></h3>
+    <dl class="hc-defs">
+      <div><dt>Cluster</dt><dd>Talos Linux, Flux, Renovate</dd></div>
+      <div><dt>Deploy</dt><dd>Ein Commit in <code>holzkube-infra</code></dd></div>
+      <div><dt>Diese Seite</dt><dd>HTML und CSS, kein Build-Schritt</dd></div>
+    </dl>
+  </section>
+
+  <!-- ── Einbinden ─────────────────────────────────────────── -->
+  <section class="doc-sec" id="einbinden">
+    <p class="hc-eyebrow"><b>05</b> Einbinden</p>
+    <h2 class="hc-title">Drei Wege hinein</h2>
+
+    <h3 class="doc-h3">Statisches HTML — holzcloud.ch, Authentik, Homepage</h3>
+<pre class="doc-code"><code>&lt;link rel="stylesheet" href="/css/tokens.css"&gt;
+&lt;link rel="stylesheet" href="/css/base.css"&gt;
+&lt;link rel="stylesheet" href="/css/components.css"&gt;</code></pre>
+
+    <h3 class="doc-h3">Go-Templates — holzcloud-cms</h3>
+    <p class="hc-muted doc-intro">Die drei Dateien nach <code>cmd/holzcloud/assets/</code>
+      und in <code>embed.FS</code>. Keine neue Abhängigkeit, kein Build-Schritt —
+      es bleibt bei reinem CSS mit <code>@layer</code>, was das Stack-Mandat
+      ausdrücklich erlaubt.</p>
+
+    <h3 class="doc-h3">React mit Tailwind und shadcn — holzkube</h3>
+<pre class="doc-code"><code>@import "tailwindcss";
+@import "shadcn/tailwind.css";
+@import "../../design/css/tokens.css";
+@import "../../design/css/shadcn-bridge.css";</code></pre>
+    <p class="hc-muted doc-intro">Die Brücke legt <code>--primary</code>,
+      <code>--card</code>, <code>--radius</code> und den Rest auf die Marken-Tokens.
+      Kein shadcn-Bauteil wird angefasst; <code>@theme inline</code> liest
+      dieselben Namen weiter.</p>
+    <div class="hc-alert hc-alert--warn doc-note">
+      <div><strong>Zwei bewusste Eingriffe.</strong> Die Brücke bildet
+      <code>:root</code> und <code>.dark</code> auf dieselben Werte ab — holzcloud
+      hat ein Thema, und es ist dunkel. Und sie setzt <code>--font-sans</code> auf
+      Manrope, was bedeutet, dass holzkube Geist ablegt. Zwei Schriften über vier
+      Oberflächen sind der sichtbarste Weg, wie sie aufhören, ein Produkt zu sein.</div>
+    </div>
+
+    <h3 class="doc-h3">Alles andere</h3>
+    <p class="hc-muted doc-intro"><code>tokens.json</code> hält dieselben 74 Werte
+      maschinenlesbar. Er wird aus <code>css/tokens.css</code> erzeugt, und die CI
+      lässt den Build scheitern, wenn beide auseinanderlaufen.</p>
+  </section>
+
+</div>
+</main>
+
+<footer class="doc-footer">
+  <div class="hc-wide hc-row" style="justify-content:space-between">
+    <span class="hc-dim hc-mono" style="font-size:var(--hc-text-xs)">© 2026 holzcloud.ch</span>
+    <a class="hc-dim hc-mono" style="font-size:var(--hc-text-xs)" href="https://github.com/holzcloud/holzcloud-design" rel="noopener">holzcloud/holzcloud-design</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+/* Layout der Musterseite selbst. Absichtlich getrennt vom System:
+   nichts hier gehört zur Vorlage, und nichts hier definiert eine Farbe,
+   einen Radius oder eine Schriftgrösse — alles kommt aus den Tokens. */
+.doc-nav { display: flex; flex-wrap: wrap; gap: var(--hc-space-5); margin-inline-start: auto; }
+.doc-nav a {
+  color: var(--hc-ink-2); text-decoration: none;
+  font-size: var(--hc-text-sm); font-weight: var(--hc-weight-medium);
+  padding-block: var(--hc-space-2); border-block-end: 1px solid transparent;
+  transition: color var(--hc-dur-fast) var(--hc-ease), border-color var(--hc-dur-fast) var(--hc-ease);
+}
+.doc-nav a:hover { color: var(--hc-ink); border-block-end-color: var(--hc-pane-lift); }
+
+.doc-hero { padding-block: clamp(var(--hc-space-8), 12vh, 140px) var(--hc-space-8); }
+.doc-hero .hc-lede { margin-block-start: var(--hc-space-5); }
+
+.doc-sec { padding-block: var(--hc-space-8); border-block-start: 1px solid var(--hc-hairline); }
+.doc-sec > .hc-title { margin-block-start: var(--hc-space-4); }
+.doc-intro { margin-block-start: var(--hc-space-4); }
+.doc-h3 {
+  margin-block: var(--hc-space-7) var(--hc-space-4);
+  font-family: var(--hc-font-mono);
+  font-size: var(--hc-text-label); font-weight: var(--hc-weight-medium);
+  letter-spacing: var(--hc-track-wide); text-transform: uppercase;
+  color: var(--hc-ink-3);
+}
+.doc-h3 code { font-size: 1em; color: var(--hc-brass); text-transform: none; letter-spacing: 0; }
+.doc-small { margin-block-start: var(--hc-space-4); font-size: var(--hc-text-sm); }
+.doc-note { margin-block-start: var(--hc-space-5); max-width: 70ch; }
+
+.doc-swatches {
+  display: grid; gap: var(--hc-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.doc-sw { display: flex; flex-direction: column; gap: var(--hc-space-2); }
+.doc-chip {
+  height: 72px; border-radius: var(--hc-r-sm);
+  border: 1px solid var(--hc-pane-edge);
+}
+.doc-sw code { font-size: var(--hc-text-xs); color: var(--hc-ink); }
+.doc-sw em { font-style: normal; font-size: var(--hc-text-xs); color: var(--hc-ink-3); font-family: var(--hc-font-mono); }
+
+.doc-type { display: grid; gap: var(--hc-space-5); }
+.doc-type-row {
+  display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: var(--hc-space-5);
+  align-items: baseline;
+  padding-block-start: var(--hc-space-5); border-block-start: 1px solid var(--hc-hairline);
+}
+.doc-type-row > code { font-size: var(--hc-text-xs); color: var(--hc-ink-3); }
+
+.doc-spaces { display: grid; gap: var(--hc-space-3); }
+.doc-spaces > div { display: grid; grid-template-columns: 110px 24px minmax(0, 1fr); gap: var(--hc-space-4); align-items: center; }
+.doc-spaces span { display: block; height: 14px; border-radius: 3px; background: var(--hc-brass); }
+.doc-spaces code { font-family: var(--hc-font-mono); font-size: var(--hc-text-xs); color: var(--hc-ink-3); }
+.doc-spaces em { font-style: normal; font-family: var(--hc-font-mono); font-size: var(--hc-text-xs); color: var(--hc-ink-3); }
+
+.doc-radii { display: flex; flex-wrap: wrap; gap: var(--hc-space-5); }
+.doc-radii > div { display: flex; flex-direction: column; gap: var(--hc-space-2); }
+.doc-radii span {
+  display: block; width: 96px; height: 72px;
+  background: var(--hc-pane); border: 1px solid var(--hc-pane-edge);
+}
+.doc-radii code { font-size: var(--hc-text-xs); color: var(--hc-ink); }
+.doc-radii em { font-style: normal; font-size: var(--hc-text-xs); color: var(--hc-ink-3); font-family: var(--hc-font-mono); }
+
+.doc-grid-2 { display: grid; gap: var(--hc-space-4); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.doc-form { max-width: 520px; }
+
+.doc-code {
+  margin: 0; padding: var(--hc-space-4);
+  background: rgb(0 0 0 / .28);
+  border: 1px solid var(--hc-pane-edge); border-radius: var(--hc-r-sm);
+  overflow-x: auto;
+  font-size: var(--hc-text-xs); line-height: 1.7; color: var(--hc-ink-2);
+}
+
+.doc-footer { padding-block: var(--hc-space-6) var(--hc-space-8); border-block-start: 1px solid var(--hc-hairline); }
+
+@media (max-width: 720px) {
+  .doc-nav { width: 100%; margin-inline-start: 0; gap: var(--hc-space-4); }
+  .hc-bar__inner { flex-wrap: wrap; padding-block: var(--hc-space-3); }
+  .doc-type-row { grid-template-columns: minmax(0, 1fr); gap: var(--hc-space-2); }
+}

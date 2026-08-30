@@ -1,0 +1,289 @@
+/* ══════════════════════════════════════════════════════════════
+   holzcloud components
+
+   Every class is prefixed `hc-`. That is not tidiness: this file gets
+   loaded next to Tailwind in holzkube and next to hand-written CSS in
+   holzcloud-cms, and a bare `.btn` would collide with both.
+
+   Everything lives in @layer hc.components, so a consuming project
+   overrides any of it from its own unlayered CSS without needing a
+   more specific selector or !important.
+
+   Needs tokens.css and base.css.
+   ══════════════════════════════════════════════════════════════ */
+@layer hc.components {
+
+  /* ── Layout ───────────────────────────────────────────────── */
+  .hc-wide {
+    width: 100%; max-width: var(--hc-wide);
+    margin-inline: auto; padding-inline: var(--hc-gutter);
+  }
+  .hc-stack > * + * { margin-block-start: var(--hc-space-4); }
+  .hc-row {
+    display: flex; flex-wrap: wrap; align-items: center; gap: var(--hc-space-3);
+  }
+
+  /* ── Pane ─────────────────────────────────────────────────────
+     The one surface in the system. Cards, dialogs, bars and panels are
+     all this, with different padding. */
+  .hc-pane {
+    background: var(--hc-pane);
+    border: 1px solid var(--hc-pane-edge);
+    border-radius: var(--hc-r);
+    box-shadow: var(--hc-shadow-pane);
+    backdrop-filter: var(--hc-blur);
+    -webkit-backdrop-filter: var(--hc-blur);
+  }
+  .hc-pane--pad   { padding: clamp(var(--hc-space-5), 4vw, var(--hc-space-7)); }
+  .hc-pane--tight { padding: var(--hc-space-4); }
+  /* Only for something the pointer can pick up. A pane that lifts on
+     hover but does nothing when clicked is a lie. */
+  a.hc-pane, button.hc-pane, .hc-pane--interactive {
+    text-decoration: none;
+    transition: border-color var(--hc-dur-fast) var(--hc-ease),
+                box-shadow  var(--hc-dur-fast) var(--hc-ease),
+                transform   var(--hc-dur-fast) var(--hc-ease);
+  }
+  a.hc-pane:hover, button.hc-pane:hover, .hc-pane--interactive:hover {
+    border-color: var(--hc-pane-lift);
+    box-shadow: var(--hc-shadow-lift);
+    transform: translateY(-2px);
+  }
+
+  /* ── Bar ──────────────────────────────────────────────────────
+     Sticky on the element itself. A sticky wrapper that is exactly as
+     tall as its contents travels zero pixels and silently scrolls away
+     — the bug this class exists to stop anyone rediscovering. */
+  .hc-bar {
+    position: sticky; top: 0; z-index: 30;
+    background: var(--hc-pane-bar);
+    border-block-end: 1px solid var(--hc-hairline);
+    backdrop-filter: var(--hc-blur-bar);
+    -webkit-backdrop-filter: var(--hc-blur-bar);
+  }
+  .hc-bar__inner {
+    display: flex; align-items: center; gap: var(--hc-space-4);
+    min-height: 68px;
+  }
+
+  /* ── Wordmark ─────────────────────────────────────────────── */
+  .hc-mark {
+    font-size: var(--hc-text-lg); letter-spacing: var(--hc-track-snug);
+    text-decoration: none; color: var(--hc-ink);
+  }
+  .hc-mark b    { font-weight: var(--hc-weight-medium); }
+  .hc-mark span { font-weight: var(--hc-weight-thin); color: var(--hc-brass); }
+
+  /* ── Buttons ──────────────────────────────────────────────────
+     No gradient, no inner highlight, no coloured glow. Those three
+     together are what dates a button. Contrast carries it instead,
+     which is why the primary is near-white and not brass. */
+  .hc-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: var(--hc-space-2);
+    padding: 13px var(--hc-space-5);
+    border-radius: var(--hc-r-pill);
+    border: 1px solid transparent;
+    font: inherit;
+    font-size: var(--hc-text-sm); font-weight: var(--hc-weight-semibold);
+    line-height: 1; text-decoration: none; cursor: pointer;
+    background: var(--hc-ink); color: var(--hc-on-brass);
+    transition: opacity var(--hc-dur-fast) var(--hc-ease),
+                transform var(--hc-dur-fast) var(--hc-ease),
+                border-color var(--hc-dur-fast) var(--hc-ease);
+  }
+  .hc-btn:hover { opacity: .88; transform: translateY(-1px); }
+  .hc-btn:disabled, .hc-btn[aria-disabled="true"] {
+    opacity: .45; cursor: not-allowed; transform: none;
+  }
+  .hc-btn--ghost {
+    background: transparent; color: var(--hc-ink);
+    border-color: var(--hc-pane-edge); font-weight: var(--hc-weight-medium);
+  }
+  .hc-btn--ghost:hover { opacity: 1; border-color: var(--hc-pane-lift); }
+  /* Destructive is outlined, not filled. A red block is the easiest
+     thing on a screen to hit by accident. */
+  .hc-btn--danger {
+    background: transparent; color: var(--hc-danger);
+    border-color: var(--hc-danger); font-weight: var(--hc-weight-semibold);
+  }
+  .hc-btn--danger:hover { opacity: 1; background: var(--hc-danger-wash); }
+  .hc-btn--sm { padding: 9px var(--hc-space-4); font-size: var(--hc-text-xs); }
+
+  /* ── Chip ─────────────────────────────────────────────────────
+     A fact about something, not a control. Mono, because what it holds
+     is usually a literal: a version, a state, a technology. */
+  .hc-chip {
+    display: inline-flex; align-items: center; gap: var(--hc-space-2);
+    font-family: var(--hc-font-mono);
+    font-size: var(--hc-text-label); letter-spacing: var(--hc-track-wide);
+    text-transform: uppercase;
+    padding: 6px var(--hc-space-3);
+    border: 1px solid var(--hc-pane-edge); border-radius: var(--hc-r-pill);
+    color: var(--hc-ink-3);
+  }
+  a.hc-chip {
+    text-decoration: none; color: var(--hc-brass);
+    border-color: var(--hc-pane-lift);
+    transition: background-color var(--hc-dur-fast) var(--hc-ease);
+  }
+  a.hc-chip:hover { background: var(--hc-brass-wash); }
+  /* Points somewhere that is not there yet. Dashed, so the border says
+     the same thing the label does. */
+  .hc-chip--pending { border-style: dashed; }
+
+  /* ── Status ───────────────────────────────────────────────────
+     Never the dot alone. Colour is the second signal; the word next to
+     it is the first. */
+  .hc-status {
+    display: inline-flex; align-items: center; gap: var(--hc-space-2);
+    font-size: var(--hc-text-sm); color: var(--hc-ink-2);
+  }
+  .hc-status::before {
+    content: ""; flex: none;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--hc-ink-3);
+  }
+  .hc-status--ok::before     { background: var(--hc-ok); }
+  .hc-status--warn::before   { background: var(--hc-warn); }
+  .hc-status--danger::before { background: var(--hc-danger); }
+  .hc-status--info::before   { background: var(--hc-info); }
+  .hc-status--live::before {
+    background: var(--hc-brass);
+    box-shadow: 0 0 0 0 var(--hc-brass-pulse);
+    animation: hc-pulse 2.6s var(--hc-ease) infinite;
+  }
+  @keyframes hc-pulse {
+    70%  { box-shadow: 0 0 0 9px var(--hc-brass-pulse-out); }
+    100% { box-shadow: 0 0 0 0  var(--hc-brass-pulse-out); }
+  }
+
+  /* ── Alert ────────────────────────────────────────────────── */
+  .hc-alert {
+    display: flex; gap: var(--hc-space-3);
+    padding: var(--hc-space-4);
+    border: 1px solid var(--hc-pane-edge);
+    border-inline-start: 3px solid var(--hc-ink-3);
+    border-radius: var(--hc-r-sm);
+    background: var(--hc-pane);
+    font-size: var(--hc-text-sm); color: var(--hc-ink-2);
+  }
+  .hc-alert strong { color: var(--hc-ink); font-weight: var(--hc-weight-semibold); }
+  .hc-alert--ok     { border-inline-start-color: var(--hc-ok);     background: var(--hc-ok-wash); }
+  .hc-alert--warn   { border-inline-start-color: var(--hc-warn);   background: var(--hc-warn-wash); }
+  .hc-alert--danger { border-inline-start-color: var(--hc-danger); background: var(--hc-danger-wash); }
+  .hc-alert--info   { border-inline-start-color: var(--hc-info);   background: var(--hc-info-wash); }
+
+  /* ── Forms ────────────────────────────────────────────────────
+     Label above, hint below, error last and announced. The order is
+     the reading order, so nothing depends on colour or position. */
+  .hc-field { display: flex; flex-direction: column; gap: var(--hc-space-2); }
+  .hc-label {
+    font-size: var(--hc-text-sm); font-weight: var(--hc-weight-medium);
+    color: var(--hc-ink);
+  }
+  .hc-input, .hc-select, .hc-textarea {
+    width: 100%;
+    padding: 11px var(--hc-space-4);
+    font: inherit; font-size: var(--hc-text-sm);
+    color: var(--hc-ink);
+    background: var(--hc-pane-sunken);
+    border: 1px solid var(--hc-pane-edge);
+    border-radius: var(--hc-r-sm);
+    transition: border-color var(--hc-dur-fast) var(--hc-ease);
+  }
+  .hc-input::placeholder, .hc-textarea::placeholder { color: var(--hc-ink-3); }
+  .hc-input:hover, .hc-select:hover, .hc-textarea:hover { border-color: var(--hc-pane-lift); }
+  .hc-textarea { min-height: 7lh; resize: vertical; }
+  .hc-input:disabled, .hc-select:disabled, .hc-textarea:disabled {
+    opacity: .5; cursor: not-allowed;
+  }
+  .hc-hint { font-size: var(--hc-text-xs); color: var(--hc-ink-3); }
+  .hc-error { font-size: var(--hc-text-xs); color: var(--hc-danger); }
+  /* Driven by the same attribute assistive technology reads, so the
+     red border cannot disagree with what gets announced. */
+  .hc-input[aria-invalid="true"],
+  .hc-select[aria-invalid="true"],
+  .hc-textarea[aria-invalid="true"] { border-color: var(--hc-danger); }
+
+  /* ── Table ────────────────────────────────────────────────────
+     Rules between rows, none around them. A grid of boxes makes the
+     numbers harder to read, not easier. */
+  .hc-table { width: 100%; border-collapse: collapse; font-size: var(--hc-text-sm); }
+  .hc-table th {
+    text-align: start; padding: var(--hc-space-3) var(--hc-space-4);
+    font-family: var(--hc-font-mono);
+    font-size: var(--hc-text-label); font-weight: var(--hc-weight-medium);
+    letter-spacing: var(--hc-track-wide); text-transform: uppercase;
+    color: var(--hc-ink-3);
+    border-block-end: 1px solid var(--hc-pane-edge);
+  }
+  .hc-table td {
+    padding: var(--hc-space-3) var(--hc-space-4);
+    color: var(--hc-ink-2);
+    border-block-end: 1px solid var(--hc-hairline);
+  }
+  .hc-table tr:last-child td { border-block-end: 0; }
+  .hc-table td.hc-num { font-family: var(--hc-font-mono); font-variant-numeric: tabular-nums; }
+  /* A wide table scrolls inside its own box. The page never does. */
+  .hc-table-scroll { overflow-x: auto; }
+
+  /* ── Text roles ───────────────────────────────────────────── */
+  .hc-eyebrow {
+    display: flex; align-items: baseline; gap: var(--hc-space-3);
+    font-family: var(--hc-font-mono);
+    font-size: 11.5px; letter-spacing: var(--hc-track-widest);
+    text-transform: uppercase; color: var(--hc-ink-3);
+  }
+  .hc-eyebrow b { color: var(--hc-brass); font-weight: var(--hc-weight-medium); }
+  .hc-display {
+    font-size: var(--hc-display-lg); font-weight: var(--hc-weight-thin);
+    line-height: var(--hc-leading-tight); letter-spacing: var(--hc-track-tight);
+    max-width: 16ch;
+  }
+  .hc-display em { font-style: normal; font-weight: var(--hc-weight-medium); color: var(--hc-brass); }
+  .hc-title { font-size: var(--hc-display); font-weight: var(--hc-weight-medium); }
+  .hc-claim {
+    font-size: var(--hc-text-xl); font-weight: var(--hc-weight-thin);
+    line-height: var(--hc-leading-snug); letter-spacing: var(--hc-track-snug);
+    color: var(--hc-brass); max-width: 30ch;
+  }
+  .hc-lede { font-size: var(--hc-text-lg); color: var(--hc-ink-2); max-width: 52ch; }
+  .hc-muted { color: var(--hc-ink-2); }
+  .hc-dim   { color: var(--hc-ink-3); }
+  .hc-mono  { font-family: var(--hc-font-mono); }
+
+  /* ── Definition rows ──────────────────────────────────────────
+     Term left, value right, a rule between. Used for facts, metadata
+     and settings — the shape every one of these turns into anyway. */
+  .hc-defs { margin: 0; }
+  .hc-defs > div {
+    display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: var(--hc-space-5);
+    padding-block: var(--hc-space-4);
+    border-block-start: 1px solid var(--hc-hairline);
+  }
+  .hc-defs > div:last-child { border-block-end: 1px solid var(--hc-hairline); }
+  .hc-defs dt {
+    font-family: var(--hc-font-mono);
+    font-size: var(--hc-text-label); letter-spacing: var(--hc-track-wide);
+    text-transform: uppercase; color: var(--hc-ink-3); padding-block-start: 3px;
+  }
+  .hc-defs dd { margin: 0; color: var(--hc-ink-2); font-size: 15.5px; }
+  @media (max-width: 640px) {
+    .hc-defs > div { grid-template-columns: minmax(0, 1fr); gap: var(--hc-space-1); }
+    .hc-defs dt { padding-block-start: 0; }
+  }
+
+  /* ── Skip link ────────────────────────────────────────────── */
+  .hc-skip {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .hc-skip:focus {
+    position: fixed; inset-block-start: var(--hc-space-3); inset-inline-start: var(--hc-space-3);
+    z-index: 60; width: auto; height: auto; clip-path: none;
+    padding: 10px var(--hc-space-4); border-radius: var(--hc-r-sm);
+    background: var(--hc-ink); color: var(--hc-on-brass);
+    font-weight: var(--hc-weight-semibold); text-decoration: none;
+  }
+}

@@ -1,0 +1,100 @@
+/* ══════════════════════════════════════════════════════════════
+   holzcloud base
+
+   What a page gets before any component: the ground, the type, the
+   focus ring, and the two settings that decide whether the glass in
+   components.css is readable or merely pretty.
+
+   Needs tokens.css. Sets no colours of its own.
+   ══════════════════════════════════════════════════════════════ */
+@layer hc.base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    /* Anything anchored has to clear a sticky bar. */
+    scroll-padding-top: var(--hc-space-9);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    /* An explicit base colour under the gradients: the image below
+       paints no colour of its own, so without this the pixels before
+       it resolves belong to the host, not to us. */
+    background-color: var(--hc-ground);
+    background-image: var(--hc-ground-image);
+    background-attachment: fixed;
+    color: var(--hc-ink);
+    font-family: var(--hc-font-sans);
+    font-size: var(--hc-text-base);
+    line-height: var(--hc-leading-base);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* One ring, on everything, and only for keyboards. Removing an
+     outline without putting something else there is how a form becomes
+     unusable without a mouse. */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: var(--hc-focus-width) solid var(--hc-focus);
+    outline-offset: var(--hc-focus-offset);
+    border-radius: var(--hc-r-sm);
+  }
+
+  :where(h1, h2, h3, h4) {
+    margin: 0;
+    font-weight: var(--hc-weight-medium);
+    letter-spacing: var(--hc-track-tight);
+    line-height: var(--hc-leading-tight);
+    text-wrap: balance;
+  }
+  :where(p) { margin: 0; max-width: var(--hc-measure); }
+  :where(code, kbd, samp, pre) { font-family: var(--hc-font-mono); font-size: .88em; }
+  :where(img, svg, video) { max-width: 100%; height: auto; }
+  :where(a) { color: inherit; }
+
+  /* ── The two settings that keep glass honest ──────────────── */
+
+  /* No backdrop-filter: paint the surface solid rather than leaving
+     text on a translucent rectangle over a moving gradient. */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    :root {
+      --hc-pane: var(--hc-pane-solid);
+      --hc-pane-bar: var(--hc-pane-bar-solid);
+      --hc-blur: none;
+      --hc-blur-bar: none;
+    }
+  }
+
+  /* Asked for less transparency: the panes go opaque *and* the ground
+     loses its gradient. Opaque panes alone would leave the gradient as
+     the only thing still moving behind text, which is the thing the
+     setting is about. */
+  @media (prefers-reduced-transparency: reduce) {
+    :root {
+      --hc-pane: var(--hc-pane-solid);
+      --hc-pane-bar: var(--hc-pane-bar-solid);
+      --hc-blur: none;
+      --hc-blur-bar: none;
+      --hc-ground-image: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important;
+    }
+  }
+
+  /* Hidden from sight, not from a screen reader. Clipped rather than
+     parked off-canvas: a box at -9999px still has a left edge outside
+     the page, which some browsers turn into a horizontal scrollbar. */
+  .hc-sr-only {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+}

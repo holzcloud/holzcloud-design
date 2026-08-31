@@ -20,9 +20,42 @@ CSS = ROOT / "css" / "tokens.css"
 JSON = ROOT / "tokens.json"
 
 # --hc-name: value;  — the value may run over several lines, which
-# --hc-ground-image does, so it is matched up to the next semicolon
-# rather than to the end of the line.
-DECL = re.compile(r"(--hc-[a-z0-9-]+)\s*:\s*(.+?);", re.S)
+# --hc-ground-image does, so it is read up to the next semicolon rather
+# than to the end of the line.
+#
+# Read quote- and paren-aware, and that is not pedantry. The previous
+# form was `(.+?);` — non-greedy to the first semicolon, blind to
+# quotes. --hc-cubes-mask carried a data URI whose "image/svg+xml;utf8,"
+# holds a semicolon, so this tool cut the value there and wrote
+# `url("data:image/svg+xml` into tokens.json. Everything generated from
+# that copy inherited the truncation, and an unclosed quote in CSS makes
+# the parser swallow the rest of the stylesheet. The token no longer
+# contains a semicolon, but a generator that cannot read one is a trap
+# waiting for the next value.
+NAME = re.compile(r"(--hc-[a-z0-9-]+)\s*:\s*")
+
+
+def declarations(text):
+    """Every --hc- declaration, respecting quotes and parentheses."""
+    for m in NAME.finditer(text):
+        i, depth, quote = m.end(), 0, None
+        while i < len(text):
+            c = text[i]
+            if quote:
+                if c == quote:
+                    quote = None
+            elif c in "\"'":
+                quote = c
+            elif c == "(":
+                depth += 1
+            elif c == ")":
+                depth -= 1
+            elif c == ";" and depth == 0:
+                break
+            elif c == "}" and depth == 0:
+                break
+            i += 1
+        yield m.group(1), text[m.end():i]
 
 GROUPS = [
     ("ground",   ("ground", "wash")),
@@ -58,7 +91,7 @@ def collect() -> dict:
     text = strip_comments(CSS.read_text(encoding="utf-8"))
     out: dict[str, dict[str, str]] = {}
     seen: list[str] = []
-    for name, value in DECL.findall(text):
+    for name, value in declarations(text):
         if name in seen:
             print(f"ERROR: {name} is declared twice in css/tokens.css", file=sys.stderr)
             raise SystemExit(1)
